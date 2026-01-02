@@ -1,22 +1,16 @@
 package com.example.springbootdeveloper;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class MemberService {
-    @Autowired
-    MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
-    public void test() {
-        memberRepository.save(new Member(1L, "A"));
-
-        Optional<Member> member = memberRepository.findById(1L);
-        List<Member> allMembers = memberRepository.findAll();
-
-        memberRepository.deleteById(1L);
+    public List<Member> getAllMembers() {
+        return memberRepository.findAll();
     }
 }

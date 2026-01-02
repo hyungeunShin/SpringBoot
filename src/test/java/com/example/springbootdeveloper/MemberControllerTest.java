@@ -17,10 +17,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @AutoConfigureMockMvc
-class TestContollerTest {
+class MemberControllerTest {
     @Autowired
     protected MockMvc mockMvc;
 
@@ -40,8 +39,8 @@ class TestContollerTest {
         memberRepository.deleteAll();
     }
 
-    @DisplayName("getAllMembers: 아티클 조회에 성공")
     @Test
+    @DisplayName("사용자 조회")
     public void getAllMembers() throws Exception {
         //given
         final String url = "/test";
@@ -52,7 +51,7 @@ class TestContollerTest {
 
         //then
         result.andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(savedMember.getId()))
-                .andExpect(jsonPath("$[0].name").value(savedMember.getName()));
+              .andExpect(jsonPath("$[0].id").value(savedMember.getId()))
+              .andExpect(jsonPath("$[0].name").value(savedMember.getName()));
     }
 }
